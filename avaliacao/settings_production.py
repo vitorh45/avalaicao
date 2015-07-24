@@ -6,15 +6,18 @@ DEBUG = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'avaliacao',
-        'USER': 'avaliacao',
-        'PASSWORD': 'avaliacao',
-        'HOST': '',
-        'PORT': '',
-    }
-}
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'avaliacao',
+#         'USER': 'avaliacao',
+#         'PASSWORD': 'avaliacao',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'

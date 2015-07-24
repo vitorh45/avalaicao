@@ -1,5 +1,8 @@
-Django<1.9
-Pillow>=2.9.0
-gunicorn>=19.3.0
-coverage>=3.7.1
-psycopg2>=2.5.2
+Django==1.8.3
+MySQL-python==1.2.5
+argparse==1.2.1
+coverage==3.7.1
+django-widget-tweaks==1.4.1
+gunicorn==19.3.0
+ipython==3.2.1
+wsgiref==0.1.2

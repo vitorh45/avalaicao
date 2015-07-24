@@ -17,7 +17,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -43,7 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # third party apps
+    'widget_tweaks',
     # local apps
+    'apps.core',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,9 +99,9 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -119,10 +120,10 @@ STATIC_URL = '/static/'
 # =============================================================================
 
 ADMINS = (
-    ('John Doe', 'johndoe@email.com'),
+    ('vitor', 'vitorh45@gmail.com'),
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -130,6 +131,9 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "_static"),
+)
 # =============================================================================
 # avaliacao settings here
 # =============================================================================
@@ -137,6 +141,22 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 SITE_NAME = 'avaliacao'
 SITE_DOMAIN = 'avaliacao.com'
 
+from django.contrib import messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'vitorteste7'
+EMAIL_HOST_PASSWORD = 'vitor_teste'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'vitorteste7@gmail.com'
+
+
+EMAIL_SUBJECT = u'Obrigado por se candidatar'
+EMAIL_MESSAGE = u'Obrigado por se candidatar, assim que tivermos uma vaga disponível para ' \
+                u'programador {habilidade}entraremos em contato.'
 # =============================================================================
 # Load settings_local.py if exists
 # =============================================================================

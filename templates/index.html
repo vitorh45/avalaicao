@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container theme-showcase" role="main">
+
+		
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+
+      	{% if messages %}		
+		    {% for message in messages %}
+		    <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+		    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		       {{ message }}
+		    </div>		
+		    {% endfor %}		
+		{% endif %}
+
+        <h1>Avaliação de candidatos</h1>
+        <p>Candidato, por favor preencha o formulário com seu dados e o nível do seu conhecimento nas tecnologias informadas.</p>
+      </div>
+
+      
+
+      <form class="form-horizontal" action='' method='POST'>
+	      {% csrf_token %}
+	      {{ form.non_field_errors }}
+	      <div class="form-group {% if form.nome.errors %}has-error{% endif %}">
+		    <label for="{{ form.nome.id_for_label }}" class="col-sm-2 control-label">{{ form.nome.label }}:</label>
+		    <div class="col-xs-6">
+		    {{ form.nome|add_class:'form-control' }}
+		    {% for error in form.nome.errors %}
+		    	<span class='text-danger'>{{ error }}</span>
+		    {% endfor %}
+		    </div>		    
+		  </div>
+		  <div class="form-group {% if form.email.errors %}has-error{% endif %}">
+		    <label for="{{ form.email.id_for_label }}" class="col-sm-2 control-label">{{ form.email.label }}:</label>
+		    <div class="col-xs-6">
+		    {{ form.email|add_class:'form-control' }}
+		    {% for error in form.email.errors %}
+		    	<span class='text-danger'>{{ error }}</span>
+		    {% endfor %}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.html_c.id_for_label }}" class="col-sm-2 control-label">{{ form.html_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.html_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.css_c.id_for_label }}" class="col-sm-2 control-label">{{ form.css_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.css_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.javascript_c.id_for_label }}" class="col-sm-2 control-label">{{ form.javascript_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.javascript_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.python_c.id_for_label }}" class="col-sm-2 control-label">{{ form.python_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.python_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.django_c.id_for_label }}" class="col-sm-2 control-label">{{ form.django_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.django_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.ios_c.id_for_label }}" class="col-sm-2 control-label">{{ form.ios_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.ios_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="{{ form.android_c.id_for_label }}" class="col-sm-2 control-label">{{ form.android_c.label }}:</label>
+		    <div class="col-xs-4">
+		    {{ form.android_c|add_class:'form-control' }}
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+		      <button type="submit" class="btn btn-primary">Enviar</button>
+		    </div>
+  </div>
+      </form>
+      
+
+    </div> <!-- /container -->
+{% endblock content %}
