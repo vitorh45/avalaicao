@@ -153,13 +153,18 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'vitorteste7'
-EMAIL_HOST_PASSWORD = 'vitor_teste'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'vitorteste7'
+# EMAIL_HOST_PASSWORD = 'vitor_teste'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = 'vitorteste7@gmail.com'
+
+EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+EMAIL_HOST= 'smtp.sendgrid.net'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'vitorteste7@gmail.com'
-
+EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
 
 EMAIL_SUBJECT = u'Obrigado por se candidatar'
 EMAIL_MESSAGE = u'Obrigado por se candidatar, assim que tivermos uma vaga disponível para ' \
