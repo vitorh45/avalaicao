@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q2bhon+^t*!r3g5#ewab7^+d^6$ab#aur4%i)_7k5+w05&^x%9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     '*',
@@ -87,21 +87,13 @@ WSGI_APPLICATION = 'avaliacao.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-import dj_database_url
+
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-
-DATABASES['default'] =  dj_database_url.config()
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -153,22 +145,28 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
 
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'vitorteste7'
-# EMAIL_HOST_PASSWORD = 'vitor_teste'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# DEFAULT_FROM_EMAIL = 'vitorteste7@gmail.com'
-
-EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
-EMAIL_HOST= 'smtp.sendgrid.net'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'vitorteste7'
+EMAIL_HOST_PASSWORD = 'vitor_teste'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+DEFAULT_FROM_EMAIL = 'vitorteste7@gmail.com'
 
 EMAIL_SUBJECT = u'Obrigado por se candidatar'
 EMAIL_MESSAGE = u'Obrigado por se candidatar, assim que tivermos uma vaga disponível para ' \
                 u'programador {habilidade}entraremos em contato.'
+
+if 'ENV' in os.environ and os.environ['ENV'] == 'production':
+    DEBUG = False
+    EMAIL_HOST_USER = os.environ['SENDGRID_USERNAME']
+    EMAIL_HOST= 'smtp.sendgrid.net'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_PASSWORD']
+
+    import dj_database_url
+
+    DATABASES['default'] =  dj_database_url.config()
 # =============================================================================
 # Load settings_local.py if exists
 # =============================================================================
