@@ -16,5 +16,5 @@ def index(request):
             message_text = u'Ocorreu um erro ao enviar os dados. Por favor verifique!'
 
         messages.add_message(request, message_type, message_text)
-
+        form = UsuarioAvaliacaoForm()
     return render(request, 'index.html', {'form': form})
