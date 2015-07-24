@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'q2bhon+^t*!r3g5#ewab7^+d^6$ab#aur4%i)_7k5+w05&^x%9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '*',
@@ -87,14 +87,8 @@ WSGI_APPLICATION = 'avaliacao.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-
 import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:////{0}'.format(os.path.join(BASE_DIR, 'db.sqlite3'))
-    )
-}
+DATABASES['default'] =  dj_database_url.config()
 
 
 # DATABASES = {
